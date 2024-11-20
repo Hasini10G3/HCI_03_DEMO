@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style> 
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: url("https://wallpapercave.com/wp/wp5496297.jpg");
+            background-position: center;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .maincontainer {
+            width: 400px;
+            padding: 30px;
+            margin-top: 80px; /* Adjusted margin to create space for fixed navbar */
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            -webkit-backdrop-filter: blur(7px); /* Added for Safari support */
+            backdrop-filter: blur(7px);
+            border-radius: 8px;
+            display: grid;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            position: relative;
+            border-bottom: 2px solid #ccc;
+            margin: 15px 0;
+        }
+
+        .input-field input {
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: 0.3s ease-in;
+        }
+        
+        .input-field input:focus~label,
+        .input-field input:valid~label{
+            transform: translateY(-120%);
+            font-size: 0.8rem;
+            top: 10px;
+        }
+
+        button {
+            background-color: #fff;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 3px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #fff;
+            color: #fff;
+        }
+
+        p {
+            text-align: center;
+            color: #ccc;
+        }
+
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #FFFFFF;
+            position: fixed; /* Changed to fixed */
+            top: 0;
+            width: 100%; /* Ensures the navbar spans the full width */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007C89;
+        }
+
+        .navbar nav a {
+            margin: 0 1rem;
+            color: #333; /* Improved contrast for readability */
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .navbar nav a:hover {
+            color: #ff0000;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">AH</div>
+        <nav>
+            <a href="indix2.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="login.html">Signin/login</a>
+            <a href="about.html">About</a>
+        </nav>
+        <div class="hamburger">&#9776;</div>
+    </header>
+   
+<div class="maincontainer">
+    <form action="index.html" method="post">
+        <h2>Sign Up</h2>
+
+        <div class="input-field">
+            <input type="text" id="username" name="username" required>
+            <label for="username"><i class="fa-solid fa-user"></i> Enter your Username</label>
+        </div>
+
+        <div class="input-field">
+            <input type="email" id="email" name="email" required>
+            <label for="email"><i class="fa-solid fa-envelope"></i> Enter your Email</label>
+        </div>
+
+        <div class="input-field">
+            <input type="password" id="password" name="password" required>
+            <label for="password"><i class="fa-solid fa-lock"></i> Enter your Password</label>
+        </div>
+
+        <div class="input-field">
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="confirm-password"><i class="fa-solid fa-lock"></i> Confirm your Password</label>
+        </div>
+
+        <button type="button" onclick="location.href='index.html'">Sign Up</button><br>
+        
+        <p>Already have an account? <a href="index.html" class="transition">Log In</a></p>
+        <br>
+        <table class="table">
+            <tr>
+                <td><a href="#">Forgot Password?</a></td>
+                <td><a href="#">Help</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script src="https://kit.fontawesome.com/2cc57a1160.js" crossorigin="anonymous"></script>
+<script>
+const logInLink = document.querySelector('a[href="index.html"]');
+
+    logInLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.body.classList.add('transition');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000); 
+    });
+</script>
+
+</body>
+</html>

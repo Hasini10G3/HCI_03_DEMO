@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Artifice and Hatching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #F5F7FA;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #FFFFFF;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007C89;
+        }
+
+        .navbar nav a {
+            margin: 0 1rem;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar nav a:hover {
+            color: #007C89;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #A6DCEF, #F7F8FA);
+            color: #333;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: #007C89;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
+
+        /* Category Menu */
+        .category-menu {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem 0;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-menu a {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            color: #007C89;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .category-menu a:hover {
+            background-color: #007C89;
+            color: #FFFFFF;
+        }
+
+        /* Section Styling */
+        .section {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 4rem 2rem;
+            text-align: left;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            font-size: 1rem;
+            color: #555;
+            max-width: 600px;
+        }
+
+        /* Alternating Section Backgrounds */
+        .section:nth-child(even) {
+            background-color: #F0F4F8;
+        }
+
+        .section:nth-child(odd) {
+            background-color: #E9F2F5;
+        }
+
+        /* Image Layout */
+        .section-content {
+            max-width: 500px;
+            flex: 1;
+        }
+
+        .section-image {
+            flex: 1;
+            max-width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .section-image img {
+            width: 100%;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .section-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Flex Direction */
+        .section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* "Know More" Button Styling */
+        .know-more-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #007C89;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .know-more-btn:hover {
+            background-color: #005b63;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem;
+            background-color: #FFFFFF;
+            text-align: center;
+            color: #555;
+            border-top: 2px solid #ddd;
+        }
+
+        .footer .footer-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            color: #007C89;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #005b63;
+        }
+
+        /* Go to Top Button Styling */
+        .go-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #007C89;
+            color: #FFFFFF;
+            font-size: 1.5rem;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .go-top-btn:hover {
+            background-color: #005b63;
+            transform: scale(1.1);
+        }
+
+        /* Show button when scrolling */
+        .show-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Image Grid Styles */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: #F5F7FA;
+        }
+
+        .image-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-card .card-content {
+            padding: 10px;
+        }
+
+        .image-card h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .image-card p { margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background-color: #FFFFFF;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* New styles for image preview modal */
+        .image-preview-modal {
+            display: none;
+            position: fixed;
+            z-index: 1100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .preview-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: calc(90vh - 100px);
+            object-fit: contain;
+        }
+
+        .preview-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .preview-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007C89;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .preview-btn:hover {
+            background-color: #005b63;
+        }
+
+        .preview-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .image-card {
+            cursor: pointer;
+        }
+
+        /* Loading spinner */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007C89;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">AH</div>
+        <nav>
+            <a href="index2.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <!--<a href="login.html">Sign up/login</a> -->
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore Our Artistic Projects</h1>
+        <p>Dive into a variety of arts and crafts categories, each showcasing unique skills, creativity, and craftsmanship.</p>
+    </section>
+
+    <!-- Category Menu -->
+    <div class="category-menu">
+        <a href="#calligraphy">Calligraphy Arts</a>
+        <a href="#artist">Artist</a>
+        <a href="#paintings">Paintings</a>
+        <a href="#sculpture">Sculpture</a>
+        <a href="#sketching">Sketching</a>
+        <a href="#rangoli">Rangoli</a>
+        <a href="#textiles">Textiles</a>
+        <a href="#paper">Paper Crafts</a>
+        <a href="#woodworking">Woodworking</a>
+        <a href="#jewelry">Jewelry Making</a>
+        <a href="#glass">Glass Arts</a>
+        <a href="#homedecor">Home Decor</a>
+    </div>
+
+    <!-- Calligraphy Arts Section -->
+    <section class="section" id="calligraphy">
+        <div class="section-content">
+            <h2>Calligraphy Arts</h2>
+            <p>Explore the beauty of elegant hand lettering and intricate designs.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('calligraphy')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://i.pinimg.com/originals/f3/91/dd/f391ddff866773821c65ccb3ed40786b.jpg" alt="Calligraphy Art">
+        </div>
+    </section>
+
+    <!-- Other Sections (Artist, Paintings, etc.) -->
+    <section class="section" id="artist">
+        <div class="section-content">
+            <h2>Artists</h2>
+            <p>Discover creative minds and their inspiring artwork.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('artist')">Know More</a>
+            <video width="320" height="240"><source src=""></video>
+        </div>
+        <div class="section-image">
+            <img src="https://th.bing.com/th/id/OIP.v2WENcySVTskJ0O-rSf4TAHaEK?rs=1&pid=ImgDetMain" alt="Artist">
+        </div>
+    </section>
+
+    <section class="section" id="paintings">
+        <div class="section-content">
+            <h2>Paintings</h2>
+            <p>Experience masterpieces from various artistic styles and periods.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('paintings')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://wallpapercave.com/wp/wp8822253.jpg" alt="Paintings">
+        </div>
+    </section>
+
+    <section class="section" id="sculpture">
+        <div class="section-content">
+            <h2>Sculpture</h2>
+            <p>Admire the art of creating three-dimensional beauty in various materials.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('sculpture')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://streetartutopia.com/wp-content/uploads/2021/06/UMI-Sculpture-by-Installation-artist-Daniel-Popper-in-Chicago-Illinois-USA-1-1068x1068.jpg" alt="Sculpture">
+        </div>
+    </section>
+
+    <section class="section" id="sketching">
+        <div class="section-content">
+            <h2>Sketching</h2>
+            <p>Explore intricate pencil and ink sketches, capturing life in lines and shadows.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('sketching')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://th.bing.com/th/id/OIP.J_jvBYyGXsLbh2rYVqx3pAHaHa?rs=1&pid=ImgDetMain" alt="Sketching">
+        </div>
+    </section>
+
+    <section class="section" id="rangoli">
+        <div class="section-content">
+            <h2>Rangoli</h2>
+            <p>Discover colorful patterns and designs that reflect tradition and creativity.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('rangoli')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://www.mynameart.com/uploads/images/awesome-new-year-rangoli-design-2022.jpg" alt="Rangoli">
+        </div>
+    </section>
+
+    <section class="section" id="textiles">
+        <div class="section-content">
+            <h2>Textiles and Fiber Arts</h2>
+            <p>Delve into fabric arts, weaving, and textile crafting from around the world.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('textiles')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://i.pinimg.com/originals/85/57/36/855736a14a4081110702b6a45d963aeb.jpg" alt="Textiles and Fiber Arts">
+        </div>
+    </section>
+
+    <section class="section" id="paper">
+        <div class="section-content">
+            <h2>Paper Crafts</h2>
+            <p>Experience the beauty of origami, paper cutting, and other paper crafts.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('paper')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://th.bing.com/th/id/R.309b67e43bcbbe3716bab0cbacf8d019?rik=F83gMADimHhRWA&riu=http%3a%2f%2fwww.thedaycollections.com%2fwp-content%2fuploads%2f2017%2f08%2fvbg6.jpg&ehk=QUL20evKErihYrHiE3FVr4IbRYB4D5LyzjPYffUYs20%3d&risl=&pid=ImgRaw&r=0" alt="Paper Crafts">
+        </div>
+    </section>
+
+    <section class="section" id="woodworking">
+        <div class="section-content">
+            <h2>Woodworking</h2>
+            <p>Explore the craftsmanship of creating art from wood, from carving to furniture.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('woodworking')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://i.pinimg.com/originals/13/66/4f/13664ffaba040a7618b5c6ad5ac92f41.jpg" alt="Woodworking">
+        </div>
+    </section>
+
+    <section class="section" id="jewelry">
+        <div class="section-content">
+            <h2>Jewelry Making</h2>
+            <p>Discover the world of handmade jewelry, crafted with precision and passion.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('jewelry')">Know More</a>
+        </div>
+        ```html
+        <div class="section-image">
+            <img src="https://content.instructables.com/ORIG/F1E/6YTZ/KDD3KB57/F1E6YTZKDD3KB57.jpg?auto=webp&frame=1&width=2100" alt="Jewelry Making">
+        </div>
+    </section>
+
+    <section class="section" id="glass">
+        <div class="section-content">
+            <h2>Glass Arts</h2>
+            <p>Admire intricate glass art, from stained glass to glass blowing.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('glass')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://th.bing.com/th/id/OIP.LJI9C3kPFBwhj7eWbVKQ7wHaHa?rs=1&pid=ImgDetMain" alt="Glass Arts">
+        </div>
+    </section>
+
+    <section class="section" id="homedecor">
+        <div class="section-content">
+            <h2>Home Decor</h2>
+            <p>Explore artistic creations that add a personal touch to any living space.</p>
+            <a href="#" class="know-more-btn" onclick="showImageGrid('homedecor')">Know More</a>
+        </div>
+        <div class="section-image">
+            <img src="https://th.bing.com/th/id/OIP.XiTYQVDZuNIUJzL1dd0YhQHaFj?rs=1&pid=ImgDetMain" alt="Home Decor">
+        </div>
+    </section>
+
+    <!-- Image Grid Modal -->
+    <div id="imageGridModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="imageGrid" class="image-grid"></div>
+        </div>
+    </div>
+
+   
+    <!-- Go to Top Button -->
+    <a href="#" class="go-top-btn" id="goTopBtn">↑</a>
+    <!-- Image Grid Modal -->
+    <div id="imageGridModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="imageGrid" class="image-grid"></div>
+        </div>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="imagePreviewModal" class="image-preview-modal">
+        <div class="preview-content">
+            <span class="preview-close">&times;</span>
+            <img id="previewImage" class="preview-image" src="" alt="">
+            <div class="loading-spinner" id="loadingSpinner"></div>
+            <div class="preview-buttons">
+                <button class="preview-btn" id="shareBtn">Share</button>
+                <button class="preview-btn" id="downloadBtn">Download</button>
+            </div>
+        </div>
+    </div>
+ <!-- Footer -->
+ <footer class="footer">
+    <div class="footer-content">
+        <p>© 2024 Artifice and Hatching. All rights reserved. Bringing together artists and creativity from around the world.</p>
+        <div class="social-links">
+            <a href="#" target="_blank">Twitter</a> | 
+            <a href="#" target="_blank">Instagram</a> | 
+            <a href="#" target="_blank">Facebook</a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        const categoryImages = {
+    calligraphy: [
+        {
+            url: 'images/CalligraphyQuoet.jpg',
+            title: 'Calligraphy Quoet',
+            description: 'Inspirational Calligraphy quoet with background'
+        },
+        {
+            url: 'images/colour calligraphy.jpg',
+            title: 'colour calligraphy',
+            description: 'Painting with calligraphy quoet'
+        },
+        {
+            url: 'images/pencil.jpg',
+            title: 'Pencil Writing',
+            description: 'Calligraphy writing with pencil'
+        },
+        {
+            url: 'images/Calligraphy3.jpg',
+            title: 'Calligraphy Aesthetics',
+            description: 'Aesthetic Calligraphy writings in diary'
+        },
+        {
+            url: 'images/Urdu Calligraphy.jpg',
+            title: 'Urdu calligraphy',
+            description: 'Urdu calligraphy arts'
+        }
+        
+        // Add more calligraphy images as needed
+    ],
+    artist: [
+        {
+            url: 'https://th.bing.com/th/id/OIP.v2WENcySVTskJ0O-rSf4TAHaEK',
+            title: 'Artist in Studio',
+            description: 'Professional artist working on canvas'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5',
+            title: 'Abstract Painting',
+            description: 'Artist creating modern abstract art'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f',
+            title: 'Street Artist',
+            description: 'Artist creating urban art'
+        }
+    ],
+    paintings: [
+        {
+            url: 'https://wallpapercave.com/wp/wp8822253.jpg',
+            title: 'Oil Painting',
+            description: 'Classical oil painting landscape'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5',
+            title: 'Modern Art',
+            description: 'Contemporary abstract painting'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec',
+            title: 'Watercolor',
+            description: 'Delicate watercolor nature scene'
+        }
+    ],
+    sculpture: [
+        {
+            url: 'https://streetartutopia.com/wp-content/uploads/2021/06/UMI-Sculpture-by-Installation-artist-Daniel-Popper-in-Chicago-Illinois-USA-1-1068x1068.jpg',
+            title: 'Modern Sculpture',
+            description: 'Contemporary installation art'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1561839561-b13bcfe95249',
+            title: 'Classical Sculpture',
+            description: 'Marble sculpture in classical style'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1544531585-9847b68c8c86',
+            title: 'Bronze Work',
+            description: 'Bronze sculptural masterpiece'
+        }
+    ],
+    sketching: [
+        {
+            url: 'https://th.bing.com/th/id/OIP.J_jvBYyGXsLbh2rYVqx3pAHaHa',
+            title: 'Pencil Sketch',
+            description: 'Detailed portrait in pencil'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1572883454114-1cf0031ede2a',
+            title: 'Charcoal Drawing',
+            description: 'Expressive charcoal artwork'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f',
+            title: 'Urban Sketching',
+            description: 'Quick urban landscape sketch'
+        }
+    ],
+    rangoli: [
+        {
+            url: 'https://www.mynameart.com/uploads/images/awesome-new-year-rangoli-design-2022.jpg',
+            title: 'Traditional Rangoli',
+            description: 'Colorful festival decoration'
+        },
+        {
+            url: 'https://i.pinimg.com/originals/2a/c9/dd/2ac9dd5124df8d0d0a29a41c15360838.jpg',
+            title: 'Modern Rangoli',
+            description: 'Contemporary rangoli design'
+        },
+        {
+            url: 'https://i.pinimg.com/originals/f3/91/dd/f391ddff866773821c65ccb3ed40786b.jpg',
+            title: 'Diwali Rangoli',
+            description: 'Festival special rangoli art'
+        }
+    ],
+    textiles: [
+        {
+            url: 'https://i.pinimg.com/originals/85/57/36/855736a14a4081110702b6a45d963aeb.jpg',
+            title: 'Woven Textile',
+            description: 'Handwoven fabric design'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1528255671579-01b9e182ed1d',
+            title: 'Embroidery',
+            description: 'Detailed embroidery work'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1528255671579-01b9e182ed1d',
+            title: 'Batik Art',
+            description: 'Traditional batik pattern'
+        }
+    ],
+    paper: [
+        {
+            url: 'images/beautiful Origami butterfly from paper.jpg',
+            title: 'Origami Art',
+            description: 'Beautiful Origami butterfly from paper'
+        },
+        {
+            url: 'images/Flowers.jpg',
+            title: 'Paper Hyacinth Flowers',
+            description: 'Intricate paper cut artwork'
+        },
+        {
+            url: 'images/PaperMushroom.jpg',
+            title: 'Paper Mushroom',
+            description: 'How to make Mushroom with paper?'
+        },
+        {
+            url: 'images/PaperButterfly.jpg',
+            title: 'Paper Butterfly',
+            description: 'Beautiful Origami butterfly from paper'
+        },
+        {
+            url: 'images/birds.jpg',
+            title: 'Origami Birds',
+            description: 'How to Make Origami Birds'
+        }
+    ],
+    woodworking: [
+        {
+            url: 'https://i.pinimg.com/originals/13/66/4f/13664ffaba040a7618b5c6ad5ac92f41.jpg',
+            title: 'Wooden Sculpture',
+            description: 'Hand-carved wooden art'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1528255671579-01b9e182ed1d',
+            title: 'Furniture Design',
+            description: 'Custom wooden furniture'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1528255671579-01b9e182ed1d',
+            title: 'Wood Carving',
+            description: 'Detailed wood carving work'
+        }
+    ],
+    glass: [
+        {
+            url: 'https://th.bing.com/th/id/OIP.LJI9C3kPFBwhj7eWbVKQ7wHaHa',
+            title: 'Blown Glass',
+            description: 'Colorful blown glass artwork'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+            title: 'Stained Glass',
+            description: 'Beautiful stained glass window'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+            title: 'Glass Sculpture',
+            description: 'Intricate glass sculpture'
+        }
+    ],
+    homedecor: [
+        {
+            url: 'https://th.bing.com/th/id/OIP.XiTYQVDZuNIUJzL1dd0YhQHaFj',
+            title: 'Decorative Vase',
+            description: 'Artistic vase for home decor'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+            title: 'Wall Art',
+            description: 'Creative wall decoration'
+        },
+        {
+            url: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+            title: 'Table Centerpiece',
+            description: 'Elegant centerpiece for dining table'
+        }
+    ]
+};
+
+        function showImageGrid(category) {
+            const modal = document.getElementById('imageGridModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const imageGrid = document.getElementById('imageGrid');
+            
+            modalTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            imageGrid.innerHTML = '';
+
+            const images = categoryImages[category] || [];
+            
+            images.forEach((image, index) => {
+                const card = document.createElement('div');
+                card.className = 'image-card';
+                card.innerHTML = `
+                    <img src="${image.url}" alt="${image.title}">
+                    <div class="card-content">
+                        <h3>${image.title}</h3>
+                        <p>${image.description}</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => showImagePreview(image.url));
+                imageGrid.appendChild(card);
+            });
+
+            modal.style.display = 'block';
+        }
+
+        function showImagePreview(imageUrl) {
+            const previewModal = document.getElementById('imagePreviewModal');
+            const previewImage = document.getElementById('previewImage');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            previewModal.style.display = 'block';
+            loadingSpinner.style.display = 'block';
+            previewImage.style.display = 'none';
+
+            previewImage.src = imageUrl;
+            previewImage.onload = function() {
+                loadingSpinner.style.display = 'none';
+                previewImage.style.display = 'block';
+            };
+        }
+
+        // Download function
+        async function downloadImage(imageUrl) {
+            try {
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'image.jpg'; 
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                a.remove();
+            } catch (error) {
+                console.error('Error downloading image:', error);
+                alert('Failed to download image');
+            }
+        }
+
+        // Share function
+        async function shareImage(imageUrl) {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Shared Image',
+                        text: 'Check out this amazing image!',
+                        url: imageUrl
+                    });
+                } catch (error) {
+                    console.error('Error sharing:', error);
+                }
+            } else {
+                alert('Copy this URL to share: ' + imageUrl);
+            }
+        }
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const imageUrl = document.getElementById('previewImage').src;
+            downloadImage(imageUrl);
+        });
+
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            const imageUrl = document.getElementById('previewImage').src;
+            shareImage(imageUrl);
+        });
+
+        document.querySelector('.preview-close').addEventListener('click', () => {
+            document.getElementById('imagePreviewModal').style.display = 'none';
+        });
+
+    </script>
+    <script>
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('imageGridModal').style.display = 'none';
+        });
+
+        window.onclick = function(event) {
+            const previewModal = document.getElementById('imagePreviewModal');
+            if (event.target === previewModal) {
+                previewModal.style.display = 'none';
+            }
+        };
+
+        document.querySelectorAll('.category-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.onscroll = function() {
+            const goTopBtn = document.getElementById("goTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                goTopBtn.classList.add("show-btn");
+            } else {
+                goTopBtn.classList.remove("show-btn");
+            }
+        };
+
+        document.getElementById("goTopBtn").addEventListener("click", function(event) {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html>

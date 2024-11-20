@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Artifice and Hatching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #F5F7FA;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #FFFFFF;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007C89;
+        }
+
+        .navbar nav a {
+            margin: 0 1rem;
+            color: #555;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar nav a:hover {
+            color: #ff0000;
+            transform: scale(1.1);
+        }
+
+        .hero-about {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #A6DCEF, #F7F8FA);
+            color: #333;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .hero-about h1 {
+            font-size: 2.8rem;
+            color: #007C89;
+            margin-bottom: 1rem;
+        }
+
+        .hero-about p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 1rem auto;
+            max-width: 600px;
+        }
+
+        /* Mission and Values */
+        .mission-values {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 4rem 2rem;
+            text-align: left;
+        }
+
+        .mission-values .content-box {
+            flex: 1 1 45%;
+            padding: 2rem;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .mission-values .content-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-values h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .mission-values p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #FFFFFF;
+        }
+
+        .team h2 {
+            font-size: 2.4rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background: #F7F8FA;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #007C89;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            color: #007C89;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 1rem;
+            background-color: #F7F8FA;
+            text-align: center;
+            color: #555;
+            margin-top: 2rem;
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">AH</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <!--<a href="models.html">Models</a>-->
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <section class="hero-about">
+        <h1>About Artifice and Hatching</h1>
+        <p>We craft sustainable, art-inspired spaces that fuse modern aesthetics with eco-conscious innovation.</p>
+    </section>
+
+    <section class="mission-values">
+        <div class="content-box fade-in">
+            <h2>Our Mission</h2>
+            <p>To design and build environmentally responsible homes that blend artistic beauty with sustainable principles.</p>
+        </div>
+        <div class="content-box fade-in">
+            <h2>Our Values</h2>
+            <p>Our core values are sustainability, transparency, and timeless design, creating spaces that make a positive impact on the environment.</p>
+        </div>
+    </section>
+
+    <section class="team fade-in">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="team-member1.jpg" alt="Thota Ananya">
+                <h3>Thota Ananya</h3>
+                <p>Lead Architect</p>
+            </div>
+            <div class="team-member">
+                <img src="team-member2.jpg" alt="Hasini Rao">
+                <h3>Hasini Rao</h3>
+                <p>Project Manager</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Artifice and Hatching. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            fadeElements.forEach(element => observer.observe(element));
+        });
+    </script>
+</body>
+</html>
